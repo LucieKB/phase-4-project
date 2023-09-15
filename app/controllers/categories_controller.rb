@@ -13,21 +13,24 @@ class CategoriesController < ApplicationController
     end
 
     def create
-        Category.create!(category_params)
+        category = Category.create!(category_params)
         render json: category, status: :created
     end
 
     def update
         category = find_category
-        category.update!(post_params)
+        category.update!(category_params)
         render json: category, status: :accepted
     end
 
     def destroy
         category = find_category
-        category.delete
+        byebug
+        category.destroy
         head :no_content
+        
     end
+
 
     private
 

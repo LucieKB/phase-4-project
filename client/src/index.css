@@ -53,21 +53,4 @@ nav a:hover{
   padding-top: 1.3rem;
 }
 
-.flex-container-categories {
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(255, 255, 255);
-  align-items: stretch;
-  justify-content: space-around;
-  height: 100%; 
-}
 
-.flex-container-categories > div {
-  background-color: #f1f1f1;
-  margin: 10px;
-  text-align: center;
-  line-height: 30px;
-  font-size: auto;
-  flex-grow: 1;
-  width: 150px;
-}

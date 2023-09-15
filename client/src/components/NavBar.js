@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavBar({ setUser }){
+function NavBar({ user, setUser }){
 
     function handleLogoutClick() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -21,6 +21,7 @@ function NavBar({ setUser }){
                 <Link to ="/">Home</Link>
                 <Link to ="/categories">All Categories</Link>
                 <Link to ="/posts">My posts</Link>
+                {user.username + " is Logged In"}
                 <button onClick={handleLogoutClick}>Logout</button>
             </nav>
         </div>

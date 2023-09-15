@@ -3,7 +3,12 @@ class PostsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
     def index
+        if params[:category_id]
+            category = Category.find(params[:category_id])
+            posts = category.posts
+        else
         posts = Post.all
+        end
         render json: posts, status: :ok
     end
 
@@ -13,7 +18,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        Post.create!(post_params)
+        post = Post.create!(post_params)
         render json: post, status: :created
     end
 
@@ -29,9 +34,11 @@ class PostsController < ApplicationController
         head :no_content
     end
 
+
+
     private
 
-    de= find_post
+    def find_post
         Post.find_by(id: params[:id])
     end
 

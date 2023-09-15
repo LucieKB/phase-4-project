@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-function LoginForm({onLogin}){
+function LoginForm(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const {setUser} = useContext(UserContext)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,12 +19,12 @@ function LoginForm({onLogin}){
             },
             body: JSON.stringify({ username, password }),
         }).then((r) => {
-            if (r.ok) {
-                r.json().then((user) => onLogin(user));
+             setIsLoading(false);
+            if (r.ok) {  
+                r.json().then((user) => setUser(user));
             } else {
                 r.json().then((err) => setErrors(err.errors))
-            }
-            setIsLoading(false);
+            }         
         });
     }
 
@@ -49,9 +51,9 @@ function LoginForm({onLogin}){
             </label>
             <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
             <label>
-                {errors.map((err) => (
-                    <p key={err}>{err}</p>
-                ))}
+                {/* {errors.map((err) => (
+                    <p key={err}>{err}</p> */}
+                {/* ))} */}
             </label>
 
         </form>

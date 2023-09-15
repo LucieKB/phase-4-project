@@ -1,9 +1,9 @@
 import React from "react";
 
-function Home(){
+function Home({user}){
 
     return(
-        <h1>This is the Home page</h1>
+        <h1>Welcome, {user.username}</h1>
     )
 
 }

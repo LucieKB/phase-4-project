@@ -5,6 +5,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 // import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router } from "react-router-dom";
+import { UserProvider } from "./contexts/UserContext";
 
 // const GlobalStyle = createGlobalStyle`
 // *,
@@ -25,7 +26,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <Router>
   <React.StrictMode>
+    <UserProvider>
     <App />
+    </UserProvider>
   </React.StrictMode>
   </Router>,
   document.getElementById('root')

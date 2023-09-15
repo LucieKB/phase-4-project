@@ -3,5 +3,5 @@ class Post < ApplicationRecord
   belongs_to :user
 
   validates :title, presence:true
-  validates :content, length:{in: 10..200}
+  validates :content, length:{in: 5..200}
 end

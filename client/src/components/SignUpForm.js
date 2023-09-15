@@ -1,27 +1,27 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { UserContext } from "../contexts/UserContext";
 
 
-function SignUpForm({onLogin}){
+function SignUpForm(){
+    const {setUser} = useContext(UserContext)
     const [formData, setFormData] = useState({
         username : (""),
         password : (""),
         password_confirmation : (""),
         state : (""),
-        grades_taught : ([]),
+        grades_taught : (""),
         years_experience : (""),
-        subjects_taught : ([]),
-        image_url : ("")
+        subjects_taught : (""),
+        img_url : ("")
     })
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
-    const handleChangeState = (e) => {
-      if(e.target.selected)
-          {  
+    const handleSelectState = (e) => { console.log ("e.target.value=" + e.target.value)
               setFormData({...formData, state:e.target.value})
           }
-          }
+
     const grades = ['Pre-K', 'K', 'Lower Elementary: 1-3rd', 'Upper Elementary: 4-5th', 'Middle School: 6-7th', 'Junior High: 8-9th', 'High School: 10-12th']
     const handleChangeGrade = (e) => {
       if(e.target.checked)
@@ -32,13 +32,11 @@ function SignUpForm({onLogin}){
 
   const subjects = ['all subjects', 'English','math', 'art','science','history','music','geography','P.E (Physical Education)','drama','biology','chemistry','physics','I.T (Information Technology)','foreign languages','social studies','technology','philosophy','graphic design','literature','algebra','geometry']
   const handleChangeSubject = (e) => {
-    if(e.target.selected)
-        {  
+    console.log ("e.target.value=" + e.target.value)
             setFormData({...formData, subjects_taught:e.target.value})
         }
-        }
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
@@ -51,9 +49,11 @@ function SignUpForm({onLogin}){
           }).then((r) => {
               setIsLoading(false);
               if (r.ok) {
-                  r.json().then((user) => onLogin(user));
+                  r.json().then((user) => setUser(user));
               } else {
-                  r.json().then((err) => setErrors(err.errors))
+                  r.json().then((err) => console.log(err.errors)
+                  // setErrors(err.errors)
+                  )
               }
           });
   }
@@ -68,6 +68,7 @@ function SignUpForm({onLogin}){
               id="username"
               autoComplete="off"
               value={formData.username}
+              placeholder="Username ..."
               onChange={(e) => setFormData({...formData, username:e.target.value})}
             />
             </label>
@@ -91,7 +92,7 @@ function SignUpForm({onLogin}){
             />
             </label>
             <label>State:
-              <select onChange={handleChangeState}>
+              <select onChange={handleSelectState}>
                 {states.map((state)=> {
                   return (
                     <option key={state} value={state}>
@@ -153,7 +154,7 @@ function SignUpForm({onLogin}){
               id="imageUrl"
               value={formData.image_url}
               placeholder= "copy the image url here"
-              onChange={(e) => setFormData({...formData, image_url:e.target.value})}
+              onChange={(e) => setFormData({...formData, img_url:e.target.value})}
             />
             </label>
           </div>
