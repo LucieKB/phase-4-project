@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function EditCategory({category, onUpdateCategory, setIsUpdating}){
+function NewResourceForm({category, onUpdateCategory, setIsUpdating}){
+    const [newResources, setNewResources] = useState("")
     const [categoryValues, setCategoryValues] = useState({
             name: category.name,
             resources : category.resources,
@@ -9,26 +10,36 @@ function EditCategory({category, onUpdateCategory, setIsUpdating}){
         })
  
  console.log(categoryValues)
+ console.log(category.resources)
+
+ const handleChangeResource = (e) => {
+    setNewResources({...category.resources, newResources:e.target.value})
+    console.log(newResources)
+    setCategoryValues ({...categoryValues, resources:newResources })
+    console.log(categoryValues)
+}
+ 
 
         const handleSubmitUpdate = (e) => {
                 e.preventDefault();
+            setCategoryValues({...category, resources:[newResources]})
             console.log("submitted" + categoryValues)
 
-                fetch(`/categories/${category.id}`,{
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        name: categoryValues.name,
-                        resources : categoryValues.resources,
-                        description: categoryValues.description,
-                        image: categoryValues.image
-                }),
-            })
-                .then((r) => r.json())
-                .then((thisUpdatedCategory) => onUpdateCategory(thisUpdatedCategory)
-                );
+            //     fetch(`/categories/${category.id}`,{
+            //         method: "PATCH",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //         },
+            //         body: JSON.stringify({
+            //             name: categoryValues.name,
+            //             resources : categoryValues.resources,
+            //             description: categoryValues.description,
+            //             image: categoryValues.image
+            //     }),
+            // })
+            //     .then((r) => r.json())
+            //     .then((thisUpdatedCategory) => onUpdateCategory(thisUpdatedCategory)
+            //     );
             
             setCategoryValues({
                 name: category.name,
@@ -52,7 +63,7 @@ function EditCategory({category, onUpdateCategory, setIsUpdating}){
                     autoComplete="off"
                     placeholder="Add a website URL ..."
                     value={categoryValues.resources}
-                    onChange={(e) => setCategoryValues({...categoryValues, resources:[e.target.value]})}
+                    onChange={handleChangeResource}
                     />
                 </label>
             </div>
@@ -65,4 +76,4 @@ function EditCategory({category, onUpdateCategory, setIsUpdating}){
 
 }
 
-export default EditCategory
+export default NewResourceForm;

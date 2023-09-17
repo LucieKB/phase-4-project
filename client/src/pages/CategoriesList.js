@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import CategoryLink from "../components/CategoryLink";
-import NewCategoryForm from "../components/NewCategoryForm";
 import { useNavigate } from "react-router-dom";
 
 function CategoriesList( {user, categories, setCategories} ){
-    const [showCategoryForm, setShowCategoryForm]=useState()
     const navigate = useNavigate()
 
     if (!categories){
@@ -13,7 +11,10 @@ function CategoriesList( {user, categories, setCategories} ){
         </div>
        }
 
-    
+  const handleAddCategories = () =>{
+    console.log("Add clicked")
+    navigate ("/categories/new")} 
+
 console.log(categories)
 
    const handleDeleteCategory = (deletedCategory) => {
@@ -29,17 +30,10 @@ console.log(categories)
         <div className="flex-container-categories">
             {categoriesLinks}
         </div>
-        { showCategoryForm ? 
-        ( user.username === "LucieKB"?
-        (<NewCategoryForm categories={categories} setCategories={setCategories} />) : (alert("You don't have the access right to add a category"))
-        )
-        :
-        (<div>
-        <p>Only admins can add a category</p>
-        <button onClick={() => {setShowCategoryForm((showCategoryForm) => (!showCategoryForm))}}> Add A Category </button></div>)  }
-        
         <div>
-
+        { user.username === "LucieKB"? 
+        ( <button onClick={handleAddCategories}> Add A Category </button>) : (null)
+        }
         </div>
         </>
     )

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import EditCategory from "../components/EditCategory";
+import EditCategory from "../components/NewResourceForm";
+import NewPostForm from "../components/NewPostForm";
 
-function CategoryCard({categories, user, setCategories}){
+function CategoryCard({categories, setCategories}){
     const [isUpdating, setIsUpdating]=useState(false)
     const {id}=useParams()
+    const [showAddPostForm, setShowAddPostForm]=useState(false)
     const category = categories.find(category => category.id === parseInt(id))
      
 
@@ -16,10 +18,14 @@ function CategoryCard({categories, user, setCategories}){
     </div>
    }
 
-   const resourcesToDisplay = "resourcesToDisplay"
-//    category.resources.map((resource)=>
-//    <a href={resource}> Resource ${resource.length} </a>
-//    )
+   const resourcesToDisplay = 
+   category.resources.map((resource)=>
+   <ul key={resource.id}>
+   
+   <span> <strong>{resource.resource_type} /</strong> <em>{resource.description}</em></span>
+   <span>&nbsp;&nbsp; ▶️ <a href={resource.site_url}>{resource.name}:</a></span>
+   </ul>
+   )
 
 
 console.log(category)   
@@ -39,8 +45,20 @@ console.log(category.resources)
         </ul>
         );
     
+     const handleAddPost = (newPost) => {
+        newPost = category.category_with_posts 
+        const categoriesWithNewPost = categories.map(cat => {
+            if (category.id === cat.id){
+                return category
+            } else {
+                return cat
+            }
+        })
+        setCategories(categoriesWithNewPost)
+     }
+
      const handleUpdateCategory = (thisUpdatedCategory) => {
-        const updatedResources = category.map((category)=>{
+        const updatedResources = category.resources.map((category)=>{
             if (category.id === thisUpdatedCategory.id){
                 setCategories([...categories, thisUpdatedCategory])
             }else{
@@ -68,7 +86,18 @@ console.log(category.resources)
             </div>
         
         </div>
-        <button>Add Post</button>
+            
+            
+            <p> Take part in the discussion about {category.name}, share your experience, some tips ...</p>
+            <button onClick={()=> setShowAddPostForm(!showAddPostForm)}>{showAddPostForm? ("Hide Form"):("Add New Post")}</button>
+            <div>
+            {showAddPostForm ? (
+            <NewPostForm handleAddPost={handleAddPost} category={category}/>
+            ):(
+             null
+             )}
+             </div>
+        
         </div>
     )
 }

@@ -5,6 +5,7 @@ import NavBar from './NavBar'
 import Home from './Home'
 import CategoriesList from "../pages/CategoriesList";
 import CategoryCard from "../pages/CategoryCard";
+import NewResourceForm from "./NewResourceForm";
 import NewCategoryForm from "./NewCategoryForm";
 import { UserContext } from "../contexts/UserContext";
 
@@ -37,6 +38,7 @@ if (!user) return <Login />
         <Route path = "/categories" element = {<CategoriesList categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/:id" element = {<CategoryCard categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/new" element = {<NewCategoryForm categories={categories} setCategories={setCategories} />} />
+        <Route path = "/categories/:id/resources/new" element = {<NewResourceForm />} />
       </Routes>
     </main>
     </>

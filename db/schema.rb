@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_08_165943) do
+ActiveRecord::Schema.define(version: 2023_09_17_214421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2023_09_08_165943) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "resources"
     t.text "description"
     t.string "image"
   end
@@ -34,6 +33,16 @@ ActiveRecord::Schema.define(version: 2023_09_08_165943) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "site_url"
+    t.string "resource_type"
+    t.string "category_id"
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|

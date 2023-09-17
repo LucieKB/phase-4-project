@@ -1,0 +1,15 @@
+.avatar{
+    aspect-ratio: auto;
+    width: 100px;
+    height: 100px;
+    object-fit: scale-down;
+    object-position: center;
+    border-radius: 50%;
+    vertical-align: middle;
+
+}
+
+
+/* div{
+    width: fit-content;
+} */

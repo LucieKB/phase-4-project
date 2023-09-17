@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    wrap_parameters format:[]
+    #take off after dvpt
+    skip_before_action :authorized
 
     def index
         if params[:category_id]
@@ -18,6 +21,7 @@ class PostsController < ApplicationController
     end
 
     def create
+        
         post = Post.create!(post_params)
         render json: post, status: :created
     end
@@ -43,7 +47,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.permit(:title, :content)
+        params.permit(:title, :content, :date, :category_id, :user_id)
     end
 
     def render_not_found_response
