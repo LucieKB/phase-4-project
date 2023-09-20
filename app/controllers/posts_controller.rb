@@ -43,11 +43,11 @@ class PostsController < ApplicationController
     private
 
     def find_post
-        Post.find_by(id: params[:id])
+        user.posts.find_by(id: params[:id])
     end
 
     def post_params
-        params.permit(:title, :content, :date, :category_id, :user_id)
+        params.permit(:title, :content, :date, :category_id, :user)
     end
 
     def render_not_found_response

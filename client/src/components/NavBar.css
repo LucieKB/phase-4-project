@@ -1,15 +1,131 @@
-.avatar{
-    aspect-ratio: auto;
-    width: 100px;
-    height: 100px;
-    object-fit: scale-down;
-    object-position: center;
-    border-radius: 50%;
-    vertical-align: middle;
-
+.wrap {
+    width: 180px;
+    height: 180px;
+    padding: 0%;
+    /* overflow: hidden;
+    position: relative; */
+    float: right;
+    display: inline;
 }
 
+.avatar{
+ 
+   /* vertical-align: right; */
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   border:3px solid black;
+    transform: scale(0.35);
+    overflow-wrap: inherit;
+}
+  
+.navbar{
+    background-color: #88cbf3;
+    height: 6em;
+  }
+  
+  nav a {
+    display: inline;
+    padding-top: 0%;
+    margin-top: 0%;
+    margin: 2rem;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    color: #020202;
+    transition: 0.1s;
+    vertical-align: middle;
+    line-height: 6rem;
+  }
+  nav a:hover{
+    color: #7004e3;
+    border-bottom: 2px solid #40BA93;
+  }
+  /* .navImage{
+    height: 5.5rem;
+    float: right;
+    padding-right: 4rem;
+    padding-top: 1.3rem;
+  } */
+  
 
-/* div{
-    width: fit-content;
-} */
+  .header h2 {
+    
+    background-color: #301934;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    background-image: repeating-conic-gradient(#553c9a 0%, #362371 10%, #8e7fba 10%, #b022bd 20%, 
+    #00c2cb 20%, #00c2cb 25%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .header .typed{
+    margin-top: 0%;
+    margin-bottom: 0%;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    overflow: hidden;
+  }
+
+  .header .typed li{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: #030203;
+    font-size: 30px;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+    top: 0;
+    animation: slide 4.5s steps(2) infinite;
+  }
+
+  @keyframes slide{
+    100%{
+      top: -80px;
+    }
+}
+
+  /* .header .typed li span{
+    position: relative;
+  } */
+
+  /* .header .typed li span::before{
+    content: '';
+    position: relative;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    border-left: 2px solid #553c9a; */
+    /* background: #fdfdfe; */
+    /* animation: cursor 2s infinite step-end, typing 4.5s steps(20) infinite; */
+  
+
+  /* @keyframes cursor{
+    0%, 100%{border-color: transparent;}
+    50%{border-color: #553c9a;}
+  } */
+  /* @keyframes typing{
+    100%{ left: 23ch;} /*Use the number of characters in the longest word*/
+  
+
+  /* @keyframes slide{
+    100%{top:-180px}
+    } */
+
+  .header{
+    
+        background-color: #e1eaf2;
+      
+  }
+  
+
+  
+  

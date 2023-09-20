@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import EditCategory from "../components/NewResourceForm";
+import {  useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import NewResourceForm from "../components/NewResourceForm";
 import NewPostForm from "../components/NewPostForm";
+
 
 function CategoryCard({categories, setCategories}){
     const [isUpdating, setIsUpdating]=useState(false)
     const {id}=useParams()
     const [showAddPostForm, setShowAddPostForm]=useState(false)
     const category = categories.find(category => category.id === parseInt(id))
-     
+    // const navigate = useNavigate()
+  
 
    
 
@@ -18,18 +20,15 @@ function CategoryCard({categories, setCategories}){
     </div>
    }
 
-   const resourcesToDisplay = 
-   category.resources.map((resource)=>
-   <ul key={resource.id}>
-   
-   <span> <strong>{resource.resource_type} /</strong> <em>{resource.description}</em></span>
-   <span>&nbsp;&nbsp; ▶️ <a href={resource.site_url}>{resource.name}:</a></span>
-   </ul>
-   )
+   const resourcesToDisplay = category.resources.map((resource)=>{
+    return(
+    <ul key={resource.name}>
+        <span> <strong>{resource.resource_type} /</strong> <em>{resource.description}</em></span>
+        <span>&nbsp;&nbsp; ▶️ <a href={resource.site_url}>{resource.name}:</a></span>
+    </ul>
+    )
+    })
 
-
-console.log(category)   
-console.log(category.resources)
 
     const catPosts = category.posts;
 
@@ -45,28 +44,27 @@ console.log(category.resources)
         </ul>
         );
     
-     const handleAddPost = (newPost) => {
-        newPost = category.category_with_posts 
+    const handleAddPost = (newPost) => {
+        const categoryWithNewPost = [...category.posts, newPost]
+        const copyCategoryPost = {...category, posts:categoryWithNewPost}
         const categoriesWithNewPost = categories.map(cat => {
-            if (category.id === cat.id){
-                return category
+            if (copyCategoryPost.id === cat.id){
+                return copyCategoryPost
             } else {
                 return cat
             }
         })
         setCategories(categoriesWithNewPost)
-     }
+        // navigate (`categories/${category.id}`)
+    }
 
-     const handleUpdateCategory = (thisUpdatedCategory) => {
-        const updatedResources = category.resources.map((category)=>{
-            if (category.id === thisUpdatedCategory.id){
-                setCategories([...categories, thisUpdatedCategory])
-            }else{
-                return categories;
-            }
-            const updatedCategory = {...category, resources: updatedResources}
-            return setCategories(...categories, updatedCategory)
-        })}
+
+    const handleAddResource = (thisnewResource) => {
+        const CatNewResource = [...category.resources, thisnewResource]
+        const copyCategory = {...category, resources:CatNewResource}
+        const copyCategories = categories.map( cat => cat.id === copyCategory.id? copyCategory : cat)
+        setCategories(copyCategories)
+    }      
 
     return(
         <div>
@@ -78,7 +76,7 @@ console.log(category.resources)
         <br />
             <button className="Update-Btn" onClick={() => setIsUpdating(isUpdating => (!isUpdating))}> Add Resource </button>
                                 {isUpdating?
-                                <EditCategory category={category} onUpdateCategory={handleUpdateCategory} setIsUpdating={setIsUpdating}/> :
+                                <NewResourceForm category={category} onAddResource={handleAddResource} setIsUpdating={setIsUpdating}/> :
                                 null} 
         <hr></hr>
             <div>
@@ -102,4 +100,4 @@ console.log(category.resources)
     )
 }
 
-export default CategoryCard
+export default CategoryCard;

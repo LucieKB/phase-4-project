@@ -12,45 +12,7 @@ code {
     monospace;
 }
 
-.header{
-  background-color: #9ad4eb;
-  height: 2rem;
-  text-align: center;
-  padding-top: 1.5rem;  
-}
-#title{
-  text-decoration: none;
-  font-size: 3em;
-  color: #ffffff;
-}
-.navbar{
-  background-color: #59b0e3;
-  height: 8rem;
-}
 
 
-
-nav a {
-  /* display: inline-flex; */
-  padding-top: 1.5rem;
-  margin: 2rem;
-  text-decoration: none;
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #020202;
-  transition: 0.1s;
-  vertical-align: middle;
-  line-height: 8rem;
-}
-nav a:hover{
-  color: #7004e3;
-  border-bottom: 2px solid #40BA93;
-}
-.navImage{
-  height: 5.5rem;
-  float: right;
-  padding-right: 4rem;
-  padding-top: 1.3rem;
-}
 
 

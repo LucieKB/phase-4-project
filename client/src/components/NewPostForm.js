@@ -3,16 +3,16 @@ import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 function NewPostForm({handleAddPost, category}){
-    const user = useContext(UserContext);
+    const {user} = useContext(UserContext);
     const [newTitle, setNewTitle] = useState("");
     const [newContent, setNewContent] = useState("");
     const [date, setDate] = useState(new Date());
-    const [userPosts, setUserPosts] = useState(user.user.posts);
+    const [userPosts, setUserPosts] = useState(user.posts);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate()
 
-    console.log(user.user)
-    console.log(user.user.id)
+    console.log(user)
+    console.log(user.id)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -20,9 +20,8 @@ function NewPostForm({handleAddPost, category}){
             title: newTitle,
             content: newContent,
             date: date,
-            user_id: user.user.id
         };
-        console.log(formData)
+    
         fetch(`${category.id}/posts`, {
             method: "POST",
             headers: {
@@ -31,9 +30,9 @@ function NewPostForm({handleAddPost, category}){
             body: JSON.stringify(formData),    
         }).then((r) => {
             if (r.ok) {
-                r.json().then((CatWithNewPost) => {
-                    handleAddPost(CatWithNewPost.category_with_post);
-                    setUserPosts({...user.user, categories: [...userPosts, CatWithNewPost]})    
+                r.json().then((catWithNewPost) => {
+                    handleAddPost(catWithNewPost);
+                    setUserPosts({...user, posts: [...userPosts, catWithNewPost]})    
                 });
             console.log("After fetch")
             navigate(`/categories/${category.id}`)

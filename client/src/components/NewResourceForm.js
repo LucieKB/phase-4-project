@@ -1,52 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function NewResourceForm({category, onUpdateCategory, setIsUpdating}){
-    const [newResources, setNewResources] = useState("")
-    const [categoryValues, setCategoryValues] = useState({
-            name: category.name,
-            resources : category.resources,
-            description: category.description,
-            image: category.image
-        })
+
+function NewResourceForm({ category, onAddResource,setIsUpdating}){
+    const [newResource, setNewResource] = useState({
+        name: (""),
+        description: (""),
+        site_url: (""),
+        resource_type: (""),
+        category_id: category.id
+    });
+    const navigate = useNavigate();
+    
+   
+    const resource_types = ["Educational Software", "Lesson Plans", "Teacher's blog", "Tips/Advices", "Music", "TV Series/Movies suggestions","Wellness"]
+
  
- console.log(categoryValues)
- console.log(category.resources)
+    const handleChangeResourceType = (e) => {
+        setNewResource({...newResource, resource_type: e.target.value})
+    }
+ console.log(newResource)
 
- const handleChangeResource = (e) => {
-    setNewResources({...category.resources, newResources:e.target.value})
-    console.log(newResources)
-    setCategoryValues ({...categoryValues, resources:newResources })
-    console.log(categoryValues)
-}
- 
-
-        const handleSubmitUpdate = (e) => {
+        const handleSubmit = (e) => {
                 e.preventDefault();
-            setCategoryValues({...category, resources:[newResources]})
-            console.log("submitted" + categoryValues)
+            console.log("submitted" + newResource)
 
-            //     fetch(`/categories/${category.id}`,{
-            //         method: "PATCH",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //         body: JSON.stringify({
-            //             name: categoryValues.name,
-            //             resources : categoryValues.resources,
-            //             description: categoryValues.description,
-            //             image: categoryValues.image
-            //     }),
-            // })
-            //     .then((r) => r.json())
-            //     .then((thisUpdatedCategory) => onUpdateCategory(thisUpdatedCategory)
-            //     );
-            
-            setCategoryValues({
-                name: category.name,
-                resources : category.resources,
-                description: category.description,
-                image: category.image   
-            });
+                fetch(`/resources`,{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newResource),
+            })
+                .then((r) => r.json())
+                .then((thisnewResource) => onAddResource(thisnewResource));
+
+            navigate(`/categories/${category.id}`)
+            setNewResource("");
 
             setIsUpdating((isUpdating) => !isUpdating)
         }
@@ -54,19 +44,66 @@ function NewResourceForm({category, onUpdateCategory, setIsUpdating}){
     return(
         
         <div>
-        <form onSubmit={handleSubmitUpdate}>
+        <form onSubmit={handleSubmit}>
             <div>
-                <label>Add Resources:
+                <label>Add Resource Title:
                     <input
                     type="text"
-                    id="resources"
+                    id="resource-title"
                     autoComplete="off"
-                    placeholder="Add a website URL ..."
-                    value={categoryValues.resources}
-                    onChange={handleChangeResource}
+                    placeholder="Title ..."
+                    value={newResource.title}
+                    onChange={(e) => setNewResource({...newResource, name: e.target.value})}
                     />
                 </label>
             </div>
+
+            <div>
+            <ul className = "types-list">
+                {resource_types.map((type)=>{
+                    return(
+                        <div key={type} className="radio-Btn">
+                            {/* <label> */}
+                                <input 
+                                type="radio"
+                                name="category-name"
+                                value={type}
+                                checked={newResource.resource_type === type}
+                                onChange={handleChangeResourceType}
+                                />{type}
+                            {/* </label> */}
+                        </div>
+                     )
+                })}
+            </ul>
+            </div>
+
+            <div>
+                <label>Add Resource Description:
+                    <input
+                    type="text"
+                    id="resource-description"
+                    autoComplete="off"
+                    placeholder="What is this resource about?"
+                    value={newResource.description}
+                    onChange={(e) => setNewResource({...newResource, description: e.target.value})}
+                    />
+                </label>
+            </div>
+
+            <div>
+                <label>Add Resource URL:
+                    <input
+                    type="text"
+                    id="resource-URL"
+                    autoComplete="off"
+                    placeholder="Copy here the website url"
+                    value={newResource.site_url}
+                    onChange={(e) => setNewResource({...newResource, site_url: e.target.value})}
+                    />
+                </label>
+            </div>
+
             <button> Submit </button>
         </form>
         </div>

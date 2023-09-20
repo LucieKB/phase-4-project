@@ -51,9 +51,9 @@ function LoginForm(){
             </label>
             <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
             <label>
-                {/* {errors.map((err) => (
-                    <p key={err}>{err}</p> */}
-                {/* ))} */}
+                {errors.map((err) => (
+                    <p key={err}>{err}</p> 
+                 ))}
             </label>
 
         </form>

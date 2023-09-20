@@ -44,10 +44,6 @@ class CategoriesController < ApplicationController
         params.permit(:id, :name, :resources, :description, :image, :date, :category_id, :post)
     end
 
-    def category_params_update
-        params.permit(:resources)
-    end
-
     def render_not_found_response
         render json: "Category not found.", status: :not_found 
     end

@@ -3,5 +3,4 @@ class Resource < ApplicationRecord
 
     validates :name, presence:true
     validates :name, uniqueness:true
-    validates :site_url, presence:true
 end
