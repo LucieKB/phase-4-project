@@ -4,4 +4,11 @@ class Post < ApplicationRecord
 
   validates :title, presence:true
   validates :content, length:{in: 5..200}
+
+  def user_name
+    self.user.username
+  end
+
+
+
 end

@@ -1,9 +1,8 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :resources, :description, :image, :category_with_posts
+  attributes :id, :name, :resources, :description, :image, :users
 
   has_many :posts
-  has_many :users
-  has_many :resources
+ 
 
   def category_with_posts
     object.posts.map{ |post|{
@@ -13,8 +12,12 @@ class CategorySerializer < ActiveModel::Serializer
       username: post.user.username,
       user_id: post.user.id,
       user_avatar: post.user.img_url
-    }
-  }
+    }}
   end
+
+ 
+
+  
+  
 
 end

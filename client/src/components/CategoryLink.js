@@ -39,16 +39,23 @@ function CategoryLink({user, category, handleDeleteCategory}){
 
     return(
       
-                <div id="front" style = {{backgroundImage : `url()`,
-                backgroundSize : "cover" }} >  
-                <Link to={`/categories/${category.id}`}>{category.name}</Link>
-                {user.username === "LucieKB"? 
-                    (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
-                }   
-                  <div  id="back">
-                    {category.description}
-                  </div>
+                <div className="front" style = {{backgroundImage : `url(${category.image})`,
+                backgroundSize : "contain" }} > 
+                <br /> 
+                <div id="cat-name" style = {{background : "white"}}><h3>{category.name}</h3></div>
+                    {user.username === "LucieKB"? 
+                        (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
+                    }  
+                    <div  id="back">
+                    <Link to={`/categories/${category.id}`}>{category.name}</Link>
+                    <p id="description">{category.description}</p>
+                    {user.username === "LucieKB"? 
+                        (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
+                    }  
+                     
+                 </div>
                 </div>
+                
             )
         
 

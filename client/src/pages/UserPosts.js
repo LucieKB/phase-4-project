@@ -1,14 +1,17 @@
 import React, {useContext} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import "./UserPosts.css"
 
 function UserPosts(){
     const {user} = useContext(UserContext)
+    const {id} = useParams
 
 
+const userCategories = user.user_posts_categories
+console.log(userCategories)
 
-const userPosts = user.posts
-console.log(userPosts)
+const postsByCategories = user.posts.map((post)=> post)
 
 
 
@@ -29,7 +32,7 @@ return(
                 </tr>
             </thead>
             <tbody>
-              {userPosts.map((post) => {
+              {postsByCategories.map((post) => {
         return (
             <tr key={post.id}>
 
@@ -53,3 +56,4 @@ return(
 }
 
 export default UserPosts;
+

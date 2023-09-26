@@ -2,6 +2,7 @@ import React from "react";
 import CategoryLink from "../components/CategoryLink";
 import { useNavigate } from "react-router-dom";
 
+
 function CategoriesList( {user, categories, setCategories} ){
     const navigate = useNavigate()
 

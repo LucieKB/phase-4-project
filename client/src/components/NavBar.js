@@ -29,15 +29,16 @@ function NavBar({ user, setUser }){
             <nav>
                 <Link to ="/">Home</Link>
                 <Link to ="/categories">All Categories</Link>
-                <Link to ="/users/:id/my-posts">My posts</Link>  
+                <Link to={`/users/${user.id}/my-categories`}>My Favorite Categories</Link>
+                <Link to ={`/users/${user.id}/my-posts`}>My Posts</Link>  
             <div className="wrap">
-                    {user.username + " is logged in"} 
-                    <iframe title= "user-avatar" className="avatar" src={user.img_url}/> 
+                   <p id="name"> {user.username + " is logged in"} </p>
+                  <button className="LogOut-Btn" onClick={handleLogoutClick}>Logout</button>
+                    <img id="avatar" title= "user-avatar" src={user.img_url}/> 
             </div>
                 </nav>  
-            <button onClick={handleLogoutClick}>Logout</button>
                 
-                
+                 
             
         </div>
         </>

@@ -17,6 +17,17 @@ class User < ApplicationRecord
     # /x
 
     # validates :password, format: PASSWORD_REQUIREMENTS
+
+    def user_categories
+        categories_used = self.categories.map{|c| c.name}
+        categories_used.group_by {|v| v }.map { |k, v| [k, v.size] }.to_h  
+    end
+
+    def user_posts_categories
+        categories_used = self.posts.map{|cat| cat.category.id}.uniq
+        user_posts = self.posts
+    end
+
 end
 
 # ‘?=’ tells our program to look from the start of the string at what it contains.

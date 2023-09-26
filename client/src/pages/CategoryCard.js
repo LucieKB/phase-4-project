@@ -31,12 +31,13 @@ function CategoryCard({categories, setCategories}){
 
 
     const catPosts = category.posts;
+    console.log(catPosts)
 
     const content = (
         <ul>
         {catPosts.map((post)=>
             <div key={post.id}>
-                <h3><u>{post.title}</u> by <em>{post.user.username}</em></h3>
+                <h3><u>{post.title}</u> by <em>{post.user_name}</em></h3>
                 <p>"{post.content}"</p>
                 <p>{post.date.split('T')[0]}</p>
             </div>

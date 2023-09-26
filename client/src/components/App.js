@@ -9,6 +9,7 @@ import NewResourceForm from "./NewResourceForm";
 import NewCategoryForm from "./NewCategoryForm";
 import { UserContext } from "../contexts/UserContext";
 import UserPosts from "../pages/UserPosts";
+import UserCategories from "../pages/UserCategories";
 
 
 function App() {
@@ -39,8 +40,9 @@ if (!user) return <Login />
         <Route path = "/categories" element = {<CategoriesList categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/:id" element = {<CategoryCard categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/new" element = {<NewCategoryForm categories={categories} setCategories={setCategories} />} />
-        <Route path = "/categories/:id/resources/new" element = {<NewResourceForm />} />
-        <Route path = "/users/:id/my-posts" element = {<UserPosts />} />
+        {/* <Route path = "/categories/:id/resources/new" element = {<NewResourceForm />} /> */}
+        <Route path = {`/users/${user.id}/my-posts`} element = {<UserPosts />} />
+        <Route path = {`/users/${user.id}/my-categories`} element = {<UserCategories categories={categories}/>} />
       </Routes>
     </main>
     </>

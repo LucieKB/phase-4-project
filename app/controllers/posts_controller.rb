@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     wrap_parameters format:[]
     #take off after dvpt
-    skip_before_action :authorized
+    # skip_before_action :authorized
 
     def index
         if params[:category_id]
@@ -21,8 +21,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        
-        post = Post.create!(post_params)
+        post = @current.posts.create!(post_params)
         render json: post, status: :created
     end
 

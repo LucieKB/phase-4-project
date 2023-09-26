@@ -1,9 +1,105 @@
-
-#back{
-    display: none;
+.flex-container-categories {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    align-items: stretch;
+    justify-content: center;
+    height: 100%; 
+    border: 5px solid black;
+    
+   
+}
+  
+ .front {
+    height:600px;
+    margin: 10px;
+    text-align: center;
+    flex-grow: 1;
+    width: 150px;
+    position: relative;
+    align-items: flex-end;
+    flex-direction: column;
+    border-style: inset;
 }
 
-#front:hover div#back {
+/* #catName{
+    position: absolute;
+    padding: 50px;
+    font-size: large;
+} */
+
+ .Btn-Delete{
+   
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+    
+  
+}  
+
+.Btn-Delete{
+    background: radial-gradient(circle, rgba(202,203,210,1) 0%, rgba(1,13,17,1) 100%);
+  border: 2px dotted #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.Btn-Delete:hover,
+.Btn-Delete:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.Btn-Delete:active {
+  opacity: .5;
+}
+
+
+ #back {
+    display: none;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, #88cbf3 100%);
+    /* height:300px;
+    text-align: center;
+    line-height: 30px;
+    font-size: auto;
+    flex-grow: 1;
+    width: 150px;
+    position: relative */ 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#back #description{
+   padding-top: 150px;
+    text-align: center;
+    line-height: 30px; 
+}
+
+.front:hover #back {
     display: block;
 }
 
@@ -12,23 +108,8 @@
 
 
 
-.flex-container-categories {
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(255, 255, 255);
-    align-items: stretch;
-    justify-content: space-around;
-    height: 100%; 
-}
-  
-.flex-container-categories > div {
-    background-color: #f1f1f1;
-    height:600px;
-    margin: 10px;
-    text-align: center;
-    line-height: 30px;
-    font-size: auto;
-    flex-grow: 1;
-    width: 150px;
-}
-             
+
+
+
+
+    

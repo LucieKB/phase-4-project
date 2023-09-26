@@ -4,4 +4,6 @@ class Category < ApplicationRecord
     has_many :resources, dependent: :destroy
 
     validates :name, uniqueness:true
+
+
 end
