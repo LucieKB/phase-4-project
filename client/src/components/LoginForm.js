@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import "./Login.css"
 
 function LoginForm(){
     const [username, setUsername] = useState("");
@@ -11,7 +12,6 @@ function LoginForm(){
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        setErrors([]);
         fetch("/login", {
             method: "POST", 
             headers: {
@@ -29,34 +29,49 @@ function LoginForm(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username: 
-                <input 
-                    htmlFor="username"
-                    type="text" 
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}/>
-            </label>
-            <label>
-                Password: 
-                <input 
-                    htmlFor="password"
-                    type="password" 
-                    id="password"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}/>
-            </label>
-            <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-            <label>
-                {errors.map((err) => (
-                    <p key={err}>{err}</p> 
-                 ))}
-            </label>
-
-        </form>
+        <>
+    <div className="wrapper">
+        <div className="inner">
+            <div className="img-holder">
+                <img id="teacher-quote" src="https://m.media-amazon.com/images/I/71JTYG-IMBL._AC_UF1000,1000_QL80_.jpg" alt/>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="form-wrapper">
+                    <label>
+                        Username: 
+                        <input 
+                            className="form-control"
+                            htmlFor="username"
+                            type="text" 
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}/>
+                    </label>
+                </div>
+                    
+                <div className="form-wrapper">
+                    <label>
+                        Password: 
+                        <input 
+                            className="form-control"
+                            htmlFor="password"
+                            type="password" 
+                            id="password"
+                            autoComplete="current-password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}/>
+                    </label>
+                </div>
+                    <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+                    <label>
+                        {errors.map((err) => (
+                            <p key={err}>{err}</p> 
+                        ))}
+                    </label>
+            </form>
+        </div>
+    </div>
+    </>
     )
 }
 

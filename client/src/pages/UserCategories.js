@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import { UserContext } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
 import "./UserCategories.css"
 
 
@@ -10,7 +11,13 @@ function UserCategories({categories}){
 
 const userCat = user.user_categories
 const objKeys = (Object.keys(userCat))
+const objKeyKeys = objKeys.map((obj) => obj[1])
 const objValues = (Object.values(userCat))
+
+
+
+console.log(userCat)
+console.log(objKeyKeys)
 
 
 const renderWords = () => {
@@ -21,12 +28,12 @@ const renderWords = () => {
     return words
 }
 const wordKeyValue = renderWords()
-const allCategories = categories.map((cat) => cat.name)
+const allCategories = categories.map((cat) => [cat.name, cat.id])
 
 
 const difference = allCategories.filter((cat) => !objKeys.includes(cat))
   
-console.log(allCategories)
+console.log(wordKeyValue)
 console.log(difference)
 
 const renderWordCloud =  wordKeyValue.map((w)=> {
@@ -79,9 +86,11 @@ console.log(wordCloudStyle)
 
     return( 
     <div key={w.text} className="wordcloud" style={wordCloudStyle}>
-        <p>{w.text}</p>
+        <p>{w.text.replace(/[^a-z\s]/gi, '')}</p>
     </div>)
 })
+
+console.log(renderWordCloud)
 
 
 return(
@@ -96,8 +105,8 @@ return(
    {difference.map((dif)=>{
    return(
     <div>
-        <li>
-         {dif}
+        <li key={dif[1]}>
+        <Link to={`/categories/${dif[1]}`}>{dif[0]}</Link>
         </li>
     </div>
    )})}

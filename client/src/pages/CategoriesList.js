@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function CategoriesList( {user, categories, setCategories} ){
     const navigate = useNavigate()
+    
 
     if (!categories){
         return <div>
@@ -32,6 +33,7 @@ console.log(categories)
             {categoriesLinks}
         </div>
         <div>
+            <br />
         { user.username === "LucieKB"? 
         ( <button onClick={handleAddCategories}> Add A Category </button>) : (null)
         }

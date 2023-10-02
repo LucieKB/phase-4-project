@@ -1,7 +1,8 @@
-import {  useState } from "react";
+import {  useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NewResourceForm from "../components/NewResourceForm";
 import NewPostForm from "../components/NewPostForm";
+import { UserContext } from "../contexts/UserContext";
 
 
 function CategoryCard({categories, setCategories}){
@@ -9,6 +10,7 @@ function CategoryCard({categories, setCategories}){
     const {id}=useParams()
     const [showAddPostForm, setShowAddPostForm]=useState(false)
     const category = categories.find(category => category.id === parseInt(id))
+    const {user, setUser} = useContext(UserContext)
     // const navigate = useNavigate()
   
 
@@ -30,6 +32,7 @@ function CategoryCard({categories, setCategories}){
     })
 
 
+
     const catPosts = category.posts;
     console.log(catPosts)
 
@@ -46,17 +49,23 @@ function CategoryCard({categories, setCategories}){
         );
     
     const handleAddPost = (newPost) => {
+        console.log("hit handleAddPost in Category Card")
         const categoryWithNewPost = [...category.posts, newPost]
         const copyCategoryPost = {...category, posts:categoryWithNewPost}
+        const userWithNewPost = {...user, posts: [...user.posts, newPost]}
+        console.log(copyCategoryPost)
+        console.log(userWithNewPost)
         const categoriesWithNewPost = categories.map(cat => {
             if (copyCategoryPost.id === cat.id){
-                return copyCategoryPost
+                console.log(copyCategoryPost)
+                return copyCategoryPost 
             } else {
                 return cat
             }
         })
         setCategories(categoriesWithNewPost)
-        // navigate (`categories/${category.id}`)
+        setUser(userWithNewPost)
+        console.log(user)
     }
 
 

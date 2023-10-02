@@ -1,4 +1,8 @@
 import React from "react";
+import BurnoutStat from "../images/BurnoutStat.jpg";
+import FedUpTeachers from "../images/FedUpTeachers.jpg";
+import Satisfaction from "../images/Satisfaction .jpg";
+
 
 function Home({user}){
 
@@ -8,10 +12,10 @@ function Home({user}){
     
 
     <div>
-        <iframe width="476" height="267" src="https://abc7ny.com/video/embed/?pid=12078880" frameborder="0" allowfullscreen></iframe>
-        <div><img src="public/images/ImageStat.png" /></div>
-        <div><img src="public/images/Screenshot 2023-09-26 at 9.12.35 AM.png" /></div>
-        <div><img src="public/images/Screenshot 2023-09-26 at 9.15.27 AM.png" /></div>
+        <iframe width="476" height="267" src="https://abc7ny.com/video/embed/?pid=12078880" ></iframe>
+        <div><img src= {BurnoutStat}/></div>
+        <div><img src={FedUpTeachers}/></div>
+        <div><img src={Satisfaction}/></div>
     </div>
     </div>
 

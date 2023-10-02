@@ -19,7 +19,7 @@ class User < ApplicationRecord
     # validates :password, format: PASSWORD_REQUIREMENTS
 
     def user_categories
-        categories_used = self.categories.map{|c| c.name}
+        categories_used = self.categories.map{|c| {c.name => c.id}}
         categories_used.group_by {|v| v }.map { |k, v| [k, v.size] }.to_h  
     end
 

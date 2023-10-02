@@ -4,16 +4,16 @@ class CategorySerializer < ActiveModel::Serializer
   has_many :posts
  
 
-  def category_with_posts
-    object.posts.map{ |post|{
-      post_id: post.id,
-      title: post.title,
-      content: post.content,
-      username: post.user.username,
-      user_id: post.user.id,
-      user_avatar: post.user.img_url
-    }}
-  end
+  # def category_with_posts
+  #   object.posts.map{ |post|{
+  #     post_id: post.id,
+  #     title: post.title,
+  #     content: post.content,
+  #     username: post.user.username,
+  #     user_id: post.user.id,
+  #     user_avatar: post.user.img_url
+  #   }}
+  # end
 
  
 

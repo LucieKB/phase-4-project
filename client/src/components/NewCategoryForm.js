@@ -25,6 +25,7 @@ const [newCatForm, setNewCatForm] = useState({
     const handleSubmit = (e) => {
         e.preventDefault()
         setNewCatForm({...newCatForm})
+        console.log(newCatForm)
         setIsLoading(true);
         fetch ("/categories",{
             method:"POST",
@@ -33,8 +34,8 @@ const [newCatForm, setNewCatForm] = useState({
             },
             body: JSON.stringify(newCatForm)
         }).then((r)=>{
-                setIsLoading(false);
-
+             console.log(r)   
+             setIsLoading(false);
                 if (r.ok) {
                     r.json().then ((newCategory) => {
                         handleAddNewCategory(newCategory);
@@ -68,33 +69,6 @@ const [newCatForm, setNewCatForm] = useState({
               value={newCatForm.name}
               onChange={(e) => setNewCatForm({...newCatForm, name:e.target.value})}
             />
-            </label>  
-
-            <label>Add Resources:
-            <input
-              type="text"
-              id="ressources"
-              autoComplete="off"
-              placeholder="Add a website URL ..."
-              value={newCatForm.resources}
-              onChange={(e) => setNewCatForm({...newCatForm, resources:[e.target.value]})}
-            />
-            <button onClick={handleAddResource}>Add Another Ressource</button>
-            {addResource? 
-            (<div id="additional-ressource">
-                    <input
-                        type="text"
-                        id="ressources"
-                        autoComplete="off"
-                        placeholder="Add a website URL ..."
-                        value={newCatForm.resources}
-                        onChange={(e) => setNewCatForm({...newCatForm, resources:[...newCatForm.resources, e.target.value]})}
-                    />
-                     <button onClick={handleAddResource}>Add Another Resource</button>
-              </div>
-              ) : (
-                ""
-            )}
             </label>  
 
             <label>Description of the Category:

@@ -10,7 +10,6 @@ function CategoryLink({user, category, handleDeleteCategory}){
 
     // const background = category.image
 
-  console.log(user)
 
     if (!category){
       return <div>
@@ -40,9 +39,9 @@ function CategoryLink({user, category, handleDeleteCategory}){
     return(
       
                 <div className="front" style = {{backgroundImage : `url(${category.image})`,
-                backgroundSize : "contain" }} > 
+                backgroundSize : "contain", backgroundBlendMode: "lighten", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} > 
                 <br /> 
-                <div id="cat-name" style = {{background : "white"}}><h3>{category.name}</h3></div>
+                <div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}><h3>{category.name}</h3></div>
                     {user.username === "LucieKB"? 
                         (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
                     }  

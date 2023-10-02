@@ -1,19 +1,47 @@
-import React, {useContext} from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, {useContext, useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import PostCard from "./PostCard";
 import "./UserPosts.css"
 
 function UserPosts(){
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const {id} = useParams
+   
+    // const [myUserPosts, setMyUserPosts] = useState({posts:[]})
 
+// useEffect(()=>{
+//     const userPosts = user.posts
+//     setMyUserPosts(userPosts)
+//     console.log("UseEffect")
+// }, [myUserPosts])
+
+// if (!user.posts){
+//     return <div>
+//         ...Loading
+//     </div>
+//    }
 
 const userCategories = user.user_posts_categories
 console.log(userCategories)
 
-const postsByCategories = user.posts.map((post)=> post)
+const onDeletePost = (DeletedPost) => {
+   const updatedPosts = user.posts.filter(post => post.id !== DeletedPost.id)
+   setUser({...user, posts: updatedPosts}) 
+   console.log(updatedPosts)
+//    setMyUserPosts(updatedPosts) 
+//    console.log(myUserPosts) 
+}
+
+const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user ={user} post={post} onDeletePost={onDeletePost} />)
+
+ 
 
 
+
+// const onUpdatePost = () => {
+//     console.log("update this post !")
+// }
 
 
 
@@ -29,23 +57,13 @@ return(
                 <tr>
                     <th>Category</th>
                     <th>My Posts</th>
+                    <th>Update my post</th>
+                    <th>Delete my post</th>
+
                 </tr>
             </thead>
             <tbody>
-              {postsByCategories.map((post) => {
-        return (
-            <tr key={post.id}>
-
-                <td>{post.category.name}</td>
-                <td>
-                    <li>{post.title} "{post.content}" {post.date.split('T')[0]}
-                    </li>
-                    </td>
-            
-            </tr>
-        );
-        })
-         }     
+              {postsByCategories}
             </tbody>
         </table>
         

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
   resources :categories do
-  resources :posts
+  resources :posts, only: [:index, :show, :create]
   end
-  
-  resources :resources
+  resources :posts
+  resources :resources, only: [:index, :create]
   resources :users, only: [:create, :index, :show]
 
 

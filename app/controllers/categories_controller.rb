@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     wrap_parameters format:[]
     #take off after dvpt
-    skip_before_action :authorized
+    # skip_before_action :authorized
 
     def index
         categories = Category.all

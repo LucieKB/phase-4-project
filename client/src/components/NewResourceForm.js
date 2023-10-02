@@ -13,7 +13,7 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
     const navigate = useNavigate();
     
    
-    const resource_types = ["Educational Software", "Lesson Plans", "Teacher's blog", "Tips/Advices", "Music", "TV Series/Movies suggestions","Wellness"]
+    const resource_types = ["📱 Educational Software", "🗓️ Lesson Plans", "🌐 Teacher's blog", "💡 Tips/Advices", "🎶 Music", "🎬 TV Series/Movies suggestions","📚 Book Club", "🧘 Wellness"]
 
  
     const handleChangeResourceType = (e) => {

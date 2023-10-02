@@ -7,7 +7,7 @@ function NewPostForm({handleAddPost, category}){
     const [newTitle, setNewTitle] = useState("");
     const [newContent, setNewContent] = useState("");
     const [date, setDate] = useState(new Date());
-    const [userPosts, setUserPosts] = useState(user.posts);
+    // const [userPosts, setUserPosts] = useState(user.posts);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate()
 
@@ -21,8 +21,8 @@ function NewPostForm({handleAddPost, category}){
             content: newContent,
             date: date,
         };
-    
-        fetch(`${category.id}/posts`, {
+    console.log(category)
+        fetch(`/categories/${category.id}/posts`, {
             method: "POST",
             headers: {
                 "Content-Type":"application/json",
@@ -32,9 +32,10 @@ function NewPostForm({handleAddPost, category}){
             if (r.ok) {
                 r.json().then((catWithNewPost) => {
                     handleAddPost(catWithNewPost);
-                    setUserPosts({...user, posts: [...userPosts, catWithNewPost]})    
+                    // setUserPosts({...user, posts: [...posts, catWithNewPost]})    
                 });
-            console.log("After fetch")
+            setNewTitle("");
+            setNewContent("")
             navigate(`/categories/${category.id}`)
             } else {
                 r.json().then((err)=>setErrors(err.errors))

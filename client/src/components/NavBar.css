@@ -43,7 +43,7 @@
     display: inline;
     padding-top: 0%;
     margin-top: 0%;
-    margin: 2rem;
+    margin: 3rem;
     text-decoration: none;
     font-size: 1.2em;
     font-weight: 600;
@@ -51,19 +51,16 @@
     color: #020202;
     transition: 0.1s;
     vertical-align: middle;
-    line-height: 6rem;
+    line-height: 5rem;
+    font-family: Arial
   }
   nav a:hover{
     color: #7004e3;
-    border-bottom: 2px solid #40BA93;
+    font-size: 1.4em;
+    font-weight: 700;
+    border-bottom: 2px solid #7004e3;
   }
-  /* .navImage{
-    height: 5.5rem;
-    float: right;
-    padding-right: 4rem;
-    padding-top: 1.3rem;
-  } */
-  
+ 
 
   .header h2 {
     

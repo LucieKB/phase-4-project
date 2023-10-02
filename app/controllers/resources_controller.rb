@@ -4,16 +4,11 @@ class ResourcesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     wrap_parameters format:[]
     #take off after dvpt
-    skip_before_action :authorized
+    # skip_before_action :authorized
 
     def index
         resources = Resource.all
         render json: resources, status: :ok
-    end
-
-    def show
-        resource = find_resource
-        render json: resource
     end
 
     def create
@@ -21,11 +16,6 @@ class ResourcesController < ApplicationController
         render json: resource, status: :created
     end
 
-    def update
-        resource = find_resource
-        resource.update!(category_params)
-        render json: resource, status: :accepted
-    end
 
     def destroy
         resource = find_resource

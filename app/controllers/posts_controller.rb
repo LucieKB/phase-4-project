@@ -16,23 +16,23 @@ class PostsController < ApplicationController
     end
 
     def show
-        post = find_post
+        post = Post.all.find_by(id: params[:id])
         render json: post
     end
 
     def create
-        post = @current.posts.create!(post_params)
+        post = @current_user.posts.create!(post_params)
         render json: post, status: :created
     end
 
     def update
-        post = find_post
+        post = @current_user.posts.find_by(id: params[:id])
         post.update!(post_params)
         render json: post, status: :accepted
     end
 
     def destroy
-        post = find_post
+        post = @current_user.posts.find_by(id: params[:id])
         post.delete
         head :no_content
     end
@@ -41,9 +41,6 @@ class PostsController < ApplicationController
 
     private
 
-    def find_post
-        user.posts.find_by(id: params[:id])
-    end
 
     def post_params
         params.permit(:title, :content, :date, :category_id, :user)
