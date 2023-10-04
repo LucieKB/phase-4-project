@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom"
 import "./Login.css"
 
 function LoginForm(){
@@ -8,6 +9,7 @@ function LoginForm(){
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
     const {setUser} = useContext(UserContext)
+    const navigate = useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -24,7 +26,8 @@ function LoginForm(){
                 r.json().then((user) => setUser(user));
             } else {
                 r.json().then((err) => setErrors(err.errors))
-            }         
+            } 
+            navigate ("./")        
         });
     }
 

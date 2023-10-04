@@ -46,7 +46,7 @@ function CategoryLink({user, category, handleDeleteCategory}){
                         (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
                     }  
                     <div  id="back">
-                    <Link to={`/categories/${category.id}`}>{category.name}</Link>
+                    <Link to={`/categories/${category.id}`}><div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}><h3>{category.name}</h3></div></Link>
                     <p id="description">{category.description}</p>
                     {user.username === "LucieKB"? 
                         (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")

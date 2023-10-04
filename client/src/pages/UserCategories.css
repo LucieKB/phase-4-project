@@ -26,6 +26,13 @@
     margin-right: auto;  
     position: relative;
     float:left;
+    display: flex;
+   
+}
+
+.title-categories p{
+    display: flex;
+    padding: 5px
 }
 
 

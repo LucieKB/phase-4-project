@@ -53,6 +53,7 @@ function NewPostForm({handleAddPost, category}){
                 type="text"
                 id="post"
                 placeholder="Title"
+                autoComplete="off"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}/>
             
@@ -60,6 +61,7 @@ function NewPostForm({handleAddPost, category}){
                 <input
                 type="text"
                 id="post-content"
+                autoComplete="off"
                 value={newContent}
                 onChange={(e) => setNewContent(e.target.value)}/>
             </div>

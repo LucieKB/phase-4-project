@@ -82,7 +82,7 @@ function SignUpForm(){
           </div>
 
           <div className="form-wrapper">
-            <label><strong><u>Password:</u></strong><em style={{color:"red"}}>*</em>
+            <label><strong><u>Password:</u></strong><em style={{color:"red"}}>*</em><em style={{fontSize:"9px"}}>Password must be 6-10 characters long, and include at least one number, one capital letter and one symbol.</em>
             <input
               className="form-control"
               type="password"

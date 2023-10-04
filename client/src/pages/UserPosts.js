@@ -41,25 +41,24 @@ const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user =
 
 return(
     <div className="wrapper">
-    <div className="post-table">
-        <h2>All My Posts</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>My Posts</th>
-                    <th>Update my post</th>
-                    <th>Delete my post</th>
+        <br />
+        <h1>All My Posts</h1>
+            <div className="post-table">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>My Posts</th>
+                            <th>Update my post</th>
+                            <th>Delete my post</th>
 
-                </tr>
-            </thead>
-            <tbody>
-              {postsByCategories}
-            </tbody>
-        </table>
-        
-        
-    </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {postsByCategories}
+                    </tbody>
+                </table>
+         </div>
     </div>
 )
 

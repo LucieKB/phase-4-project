@@ -27,11 +27,11 @@ function NavBar({ user, setUser }){
                 <Link to ="/categories">All Categories</Link>
                 <Link to={`/users/${user.id}/categories`}>My Favorite Categories</Link>
                 <Link to ={`/users/${user.id}/posts`}>My Posts</Link>  
-            {/* <div className="wrap"> */}
+            <div className="avatar-box">
                    <p id="name"> {user.username + " is logged in"} </p>
                   <button className="LogOut-Btn" onClick={handleLogoutClick}>Logout</button>
                     <img id="avatar" title= "user-avatar" src={user.img_url}/> 
-            {/* </div> */}
+            </div>
                 </nav>  
                 
                  

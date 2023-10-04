@@ -14,7 +14,6 @@ import UserCategories from "../pages/UserCategories";
 
 function App() {
   const {user, setUser} = useContext(UserContext);
-  
   const [categories, setCategories] = useState([])
   
 
@@ -40,7 +39,6 @@ if (!user) return <Login />
         <Route path = "/categories" element = {<CategoriesList categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/:id" element = {<CategoryCard categories={categories} setCategories={setCategories} user={user}/>} />
         <Route path = "/categories/new" element = {<NewCategoryForm categories={categories} setCategories={setCategories} />} />
-        {/* <Route path = "/categories/:id/resources/new" element = {<NewResourceForm />} /> */}
         <Route path = {`/users/${user.id}/posts`} element = {<UserPosts user={user}/>} />
         <Route path = {`/users/${user.id}/categories`} element = {<UserCategories categories={categories}/>} />
       </Routes>

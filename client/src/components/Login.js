@@ -19,21 +19,21 @@ function Login(){
     
         <div>
             {showLogin ? 
-            <div>(
+            (<div>
                 <LoginForm />
                 <div className= "bottom-wrap">
                     <h3>Don't have an account?</h3>
                     <button className="SignUp-Btn" onClick={() => setShowLogin(false)}>Sign Up</button>
                 </div>
-            )</div>
+            </div>)
               : 
-            <div>(
+            (<div>
                 <SignUpForm />
                 <div className= "bottom-wrap">
                     <h3>Already have an account?</h3>
                     <button className="SignUp-Btn" onClick={() => setShowLogin(true)}>Log In</button>
                 </div>
-            )</div>
+            </div>)
            }
         </div>
         </>   

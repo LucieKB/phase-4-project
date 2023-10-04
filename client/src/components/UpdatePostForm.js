@@ -40,7 +40,8 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
 
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}
+        className="update-field">
             <h4>Modify my Post</h4>
             <div>
                 <label>Post title:</label>
@@ -57,7 +58,8 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
                 id="post-content"
                 placeholder= {post.content}
                 value={postValues.content}
-                onChange={(e) => setPostValues({...postValues, content:e.target.value})}/>
+                onChange={(e) => setPostValues({...postValues, content:e.target.value})}
+                style={{width: "600px"}}/>
             </div>
                 {errors?.map((err) => (
             <p key={err} >
