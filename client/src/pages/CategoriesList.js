@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryLink from "../components/CategoryLink";
 import { useNavigate } from "react-router-dom";
-
+import "./CategoriesList.css"
 
 function CategoriesList( {user, categories, setCategories} ){
     const navigate = useNavigate()
@@ -29,14 +29,17 @@ console.log(categories)
     
     return(
         <>
-        <div className="flex-container-categories">
-            {categoriesLinks}
-        </div>
-        <div>
-            <br />
-        { user.username === "LucieKB"? 
-        ( <button onClick={handleAddCategories}> Add A Category </button>) : (null)
-        }
+        <div className="wrapper">
+            <div className="flex-container-categories">
+                {categoriesLinks}
+            </div>
+        <br />
+            <div className="add-category">
+                
+            { user.username === "LucieKB"? 
+            ( <button className="Btn-add" onClick={handleAddCategories}> Add A Category </button>) : (null)
+            }
+            </div>
         </div>
         </>
     )

@@ -1,0 +1,49 @@
+.wrapper{
+    min-width: 100vh;
+    background-image: url("https://wallpapers.com/images/high/spa-background-lxzbsb2f2wsg2z1o.webp");
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center
+}
+
+.flex-container-categories {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    align-items: stretch;
+    justify-content: center;
+    height: 100%; 
+    border: 5px solid black;
+    margin-left: auto;
+    margin-right: auto;  
+    position: relative;
+}
+
+
+
+
+.add-category .Btn-add{
+    border: solid fuchsia 3px;
+    width: 164px;
+    height: 51px;
+    margin: auto;
+    margin-left: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #230224;
+    font-size: 15px;
+    font-weight:bold ;
+    color: #fff;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}

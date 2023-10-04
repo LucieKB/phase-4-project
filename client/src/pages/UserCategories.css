@@ -1,3 +1,37 @@
 .title{
     text-align: center;
 }
+
+.wrapper{
+    min-width: 100vh;
+    background-image: url("https://wallpapers.com/images/high/spa-background-lxzbsb2f2wsg2z1o.webp");
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-categories {
+    margin-top: 30px;
+    width: 800px;
+    background-color: rgb(255, 255, 255);
+    align-items: stretch;
+    justify-content: center;
+    height: 60vh; 
+    border: 5px solid black;
+    margin-left: auto;
+    margin-right: auto;  
+    position: relative;
+    float:left;
+}
+
+
+
+.title-categories .wordcloud{
+    height: 50px;
+    max-width: 800px;
+    text-align: center
+}

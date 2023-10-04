@@ -1,55 +1,46 @@
-import React, {useContext, useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React, {useContext} from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 import PostCard from "./PostCard";
 import "./UserPosts.css"
 
 function UserPosts(){
     const {user, setUser} = useContext(UserContext)
-    const {id} = useParams
+    const navigate = useNavigate()
    
-    // const [myUserPosts, setMyUserPosts] = useState({posts:[]})
 
-// useEffect(()=>{
-//     const userPosts = user.posts
-//     setMyUserPosts(userPosts)
-//     console.log("UseEffect")
-// }, [myUserPosts])
+const userPostsCategories = user.user_posts_categories
 
-// if (!user.posts){
-//     return <div>
-//         ...Loading
-//     </div>
-//    }
 
-const userCategories = user.user_posts_categories
-console.log(userCategories)
 
 const onDeletePost = (DeletedPost) => {
    const updatedPosts = user.posts.filter(post => post.id !== DeletedPost.id)
    setUser({...user, posts: updatedPosts}) 
    console.log(updatedPosts)
-//    setMyUserPosts(updatedPosts) 
-//    console.log(myUserPosts) 
 }
 
-const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user ={user} post={post} onDeletePost={onDeletePost} />)
 
- 
+const onUpdatePost = (thisUpdatedPost) => {
+    const modifiedPosts = user.posts.map((post)=>{
+        if (post.id === thisUpdatedPost.id) {
+            return thisUpdatedPost;
+        } else {
+            return post
+        }
+    })
+    const updatedUser = {...user, posts: modifiedPosts};
+    setUser(updatedUser);
+    navigate(`/users/${user.id}/posts`)
+}
 
-
-
-// const onUpdatePost = () => {
-//     console.log("update this post !")
-// }
-
-
+const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user ={user} post={post} onDeletePost={onDeletePost} onUpdatePost={onUpdatePost}/>)
 
 
 
 
 
 return(
+    <div className="wrapper">
     <div className="post-table">
         <h2>All My Posts</h2>
         <table>
@@ -68,6 +59,7 @@ return(
         </table>
         
         
+    </div>
     </div>
 )
 

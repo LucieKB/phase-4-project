@@ -1,0 +1,85 @@
+.wrapper{
+    min-width: 100vh;
+    background-image: url("https://wallpapers.com/images/high/spa-background-lxzbsb2f2wsg2z1o.webp");
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center
+}
+
+.resources{
+        margin-top: 30px;
+        width: 800px;
+        background-color: rgb(255, 255, 255);
+        align-items: stretch;
+        justify-content: center;
+        height: auto; 
+        border: 5px solid black;
+        margin-left: auto;
+        margin-right: auto;  
+        position: relative;
+        float:left;
+}
+
+.resources #resource-line{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.resources .Update-Btn{
+    width: 124px;
+    height: 34px;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #230224;
+    font-size: 15px;
+    font-weight:bold ;
+    color: #fff;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+
+.posts{
+    margin-top: 30px;
+    width: 800px;
+    background-color: rgb(255, 255, 255);
+    align-items: stretch;
+    justify-content: center;
+    height: auto; 
+    border: 5px solid black;
+    margin-left: auto;
+    margin-right: auto;  
+    position: relative;
+    float:left;
+}
+
+.posts .Update-Btn{
+    width: 124px;
+    height: 34px;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #230224;
+    font-size: 15px;
+    font-weight:bold ;
+    color: #fff;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}

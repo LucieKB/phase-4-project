@@ -11,14 +11,8 @@ function UserCategories({categories}){
 
 const userCat = user.user_categories
 const objKeys = (Object.keys(userCat))
-const objKeyKeys = objKeys.map((obj) => obj[1])
+const objKeyKeys = objKeys.map((obj) => obj.replace(/[^a-z\s]/gi, ''))
 const objValues = (Object.values(userCat))
-
-
-
-console.log(userCat)
-console.log(objKeyKeys)
-
 
 const renderWords = () => {
     const words = []
@@ -30,11 +24,7 @@ const renderWords = () => {
 const wordKeyValue = renderWords()
 const allCategories = categories.map((cat) => [cat.name, cat.id])
 
-
-const difference = allCategories.filter((cat) => !objKeys.includes(cat))
-  
-console.log(wordKeyValue)
-console.log(difference)
+const difference = allCategories.filter((cat) => !objKeyKeys.includes(cat[0])) 
 
 const renderWordCloud =  wordKeyValue.map((w)=> {
 
@@ -82,26 +72,22 @@ const renderWordCloud =  wordKeyValue.map((w)=> {
 
 }
 
-console.log(wordCloudStyle)
-
     return( 
     <div key={w.text} className="wordcloud" style={wordCloudStyle}>
         <p>{w.text.replace(/[^a-z\s]/gi, '')}</p>
     </div>)
 })
 
-console.log(renderWordCloud)
-
 
 return(
-    <div>
-    <div className = "title">
-    <h2><u>Categories</u></h2>
-   
+    <div className="wrapper">
+        <h1><u>Categories</u></h1>
+    <div className = "title-categories">
+   <br />
        {renderWordCloud}
        <br /> 
    </div>
-   <div><p><u>📬 Here are some other categories you might be interested in !</u></p></div> 
+   <div><h3><u>📬 Here are some other categories you might be interested in !</u></h3></div> 
    {difference.map((dif)=>{
    return(
     <div>

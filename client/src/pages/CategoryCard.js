@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import NewResourceForm from "../components/NewResourceForm";
 import NewPostForm from "../components/NewPostForm";
 import { UserContext } from "../contexts/UserContext";
+import "./CategoryCard.css"
 
 
 function CategoryCard({categories, setCategories}){
@@ -11,11 +12,7 @@ function CategoryCard({categories, setCategories}){
     const [showAddPostForm, setShowAddPostForm]=useState(false)
     const category = categories.find(category => category.id === parseInt(id))
     const {user, setUser} = useContext(UserContext)
-    // const navigate = useNavigate()
-  
-
    
-
    if (!category){
     return <div>
         ...Loading
@@ -24,14 +21,12 @@ function CategoryCard({categories, setCategories}){
 
    const resourcesToDisplay = category.resources.map((resource)=>{
     return(
-    <ul key={resource.name}>
+    <ul id="resource-line" key={resource.name}>
         <span> <strong>{resource.resource_type} /</strong> <em>{resource.description}</em></span>
         <span>&nbsp;&nbsp; ▶️ <a href={resource.site_url}>{resource.name}:</a></span>
     </ul>
     )
     })
-
-
 
     const catPosts = category.posts;
     console.log(catPosts)
@@ -40,9 +35,13 @@ function CategoryCard({categories, setCategories}){
         <ul>
         {catPosts.map((post)=>
             <div key={post.id}>
+            <li>
                 <h3><u>{post.title}</u> by <em>{post.user_name}</em></h3>
-                <p>"{post.content}"</p>
-                <p>{post.date.split('T')[0]}</p>
+                <p style={{fontFamily:"Courier New", fontSize:"15px"}}>"{post.content}"</p>
+                <p><u>date posted:</u> {post.date.split('T')[0]}</p>
+                <p style={{textAlign:"center"}}> *** </p>
+                < br/>
+            </li>
             </div>
         )}
         </ul>
@@ -78,9 +77,10 @@ function CategoryCard({categories, setCategories}){
 
     return(
         <div>
+        <div className="wrapper">
         <header><h1>{category.name}</h1></header>
         <hr></hr>
-        <div>
+        <div className = "resources">
         <h2> 💻 <u> Resources</u> 💻 </h2>
             {resourcesToDisplay}
         <br />
@@ -88,16 +88,18 @@ function CategoryCard({categories, setCategories}){
                                 {isUpdating?
                                 <NewResourceForm category={category} onAddResource={handleAddResource} setIsUpdating={setIsUpdating}/> :
                                 null} 
+        </div>
         <hr></hr>
-            <div>
+            <div className = "posts">
                 {content}
+                <hr />
+                <h3> Take part in the discussion about {category.name}, share your experience, some tips ...</h3>
+            <button className="Update-Btn" onClick={()=> setShowAddPostForm(!showAddPostForm)}>{showAddPostForm? ("Hide Form"):("Add New Post")}</button>
             </div>
         
         </div>
             
             
-            <p> Take part in the discussion about {category.name}, share your experience, some tips ...</p>
-            <button onClick={()=> setShowAddPostForm(!showAddPostForm)}>{showAddPostForm? ("Hide Form"):("Add New Post")}</button>
             <div>
             {showAddPostForm ? (
             <NewPostForm handleAddPost={handleAddPost} category={category}/>

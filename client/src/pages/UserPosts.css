@@ -1,11 +1,17 @@
-table {
-    width: 800px;
-    height: 200px;
+.post-table {
+    background-color: white;
+    width: 1000px;
     border-collapse: collapse;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    padding: 20px;
   }
   
+  h2{
+    text-align: center;
+  }
+
   th {
     border-bottom: 1px solid black;
     border: 2px solid black;
@@ -14,5 +20,61 @@ table {
   td {
     text-align: center;
     border: 2px solid black;
+    vertical-align: middle;
+    margin: 10px;
+    padding: 10px;
   }
+
+  #Update-Btn {
+    border: none;
+    width: 164px;
+    height: 51px;
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #333;
+    font-size: 15px;
+    color: #fff;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+
+#Post-Delete-Btn {
+  border: none;
+  width: 164px;
+  height: 51px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #333;
+  font-size: 15px;
+  color: #fff;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+}
+
+  .wrapper{
+    min-width: 100vh;
+    background-image: url("https://wallpapers.com/images/high/spa-background-lxzbsb2f2wsg2z1o.webp");
+    min-height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center
+}
+
+
 
