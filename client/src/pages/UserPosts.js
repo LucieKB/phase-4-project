@@ -33,7 +33,7 @@ const onUpdatePost = (thisUpdatedPost) => {
     navigate(`/users/${user.id}/posts`)
 }
 
-const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user ={user} post={post} onDeletePost={onDeletePost} onUpdatePost={onUpdatePost}/>)
+const postsByCategories = user.posts.map((post)=> <PostCard key={post.id} user ={user} post={post} onDeletePost={onDeletePost} onUpdatePost={onUpdatePost} />)
 
 
 
@@ -49,7 +49,7 @@ return(
                         <tr>
                             <th>Category</th>
                             <th>My Posts</th>
-                            <th>Update my post</th>
+                            {/* <th>Update my post</th> */}
                             <th>Delete my post</th>
 
                         </tr>

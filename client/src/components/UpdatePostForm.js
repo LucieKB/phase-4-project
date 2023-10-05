@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./UpdatePostForm.css"
 
 
 
@@ -11,7 +12,7 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
     const [errors, setErrors] = useState([]);
     
 
-   
+   console.log(post)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -40,14 +41,14 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
 
 
     return(
+        <div  className="Updateform-wrapper">
         <form onSubmit={handleSubmit}
         className="update-field">
-            <h4>Modify my Post</h4>
             <div>
                 <label>Post title:</label>
                 <input
+                className="Updateform-control"
                 type="text"
-                id="post"
                 placeholder= {post.title}
                 value={postValues.title}
                 onChange={(e) => setPostValues({...postValues, title:e.target.value})}/>
@@ -55,7 +56,7 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
                 <label>Post content:</label>
                 <input
                 type="text"
-                id="post-content"
+                className="Updateform-control"
                 placeholder= {post.content}
                 value={postValues.content}
                 onChange={(e) => setPostValues({...postValues, content:e.target.value})}
@@ -66,8 +67,9 @@ function UpdatePostForm({post, onUpdatePost, setIsUpdating}){
                 {err}
             </p>
             ))}
-            <button type="submit">Submit</button>
+            <button id="Update-submit" type="submit">Submit</button>
         </form>
+        </div>
 
     )
 

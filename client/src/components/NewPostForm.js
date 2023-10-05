@@ -1,6 +1,7 @@
 import React, {useState, useContext} from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import "./Forms.css"
 
 function NewPostForm({handleAddPost, category}){
     const {user} = useContext(UserContext);
@@ -45,11 +46,13 @@ function NewPostForm({handleAddPost, category}){
     }
 
     return(
+        <div  className="form-wrapper">
         <form onSubmit={handleSubmit}>
-            <h4>Add New Post</h4>
+            <h3><em>{user.username}'s new post </em></h3>
             <div>
                 <label>Post title:</label>
                 <input
+                className="form-control"
                 type="text"
                 id="post"
                 placeholder="Title"
@@ -59,6 +62,7 @@ function NewPostForm({handleAddPost, category}){
             
                 <label>Post content:</label>
                 <input
+                className="form-control"
                 type="text"
                 id="post-content"
                 autoComplete="off"
@@ -70,9 +74,9 @@ function NewPostForm({handleAddPost, category}){
                 {err}
             </p>
             ))}
-            <button type="submit">Submit</button>
+            <button className="submit-Btn">Submit</button>
         </form>
-
+    </div>
     )
 
 }

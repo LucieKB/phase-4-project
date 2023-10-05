@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
 
     def post_params
-        params.permit(:title, :content, :date, :category_id, :user)
+        params.permit(:id, :title, :content, :date, :category_id, :user)
     end
 
     def render_not_found_response

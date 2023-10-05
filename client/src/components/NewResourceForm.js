@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Forms.css";
 
 
 function NewResourceForm({ category, onAddResource,setIsUpdating}){
@@ -45,9 +46,10 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
         
         <div>
         <form onSubmit={handleSubmit}>
-            <div>
+            <div className="form-wrapper">
                 <label>Add Resource Title:
                     <input
+                    className="form-control"
                     type="text"
                     id="resource-title"
                     autoComplete="off"
@@ -58,12 +60,11 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
                 </label>
             </div>
 
-            <div>
+            <div className="form-wrapper">
             <ul className = "types-list">
                 {resource_types.map((type)=>{
                     return(
                         <div key={type} className="radio-Btn">
-                            {/* <label> */}
                                 <input 
                                 type="radio"
                                 name="category-name"
@@ -71,16 +72,16 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
                                 checked={newResource.resource_type === type}
                                 onChange={handleChangeResourceType}
                                 />{type}
-                            {/* </label> */}
                         </div>
                      )
                 })}
             </ul>
             </div>
 
-            <div>
+            <div className="form-wrapper">
                 <label>Add Resource Description:
                     <input
+                    className="form-control"
                     type="text"
                     id="resource-description"
                     autoComplete="off"
@@ -91,9 +92,10 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
                 </label>
             </div>
 
-            <div>
+            <div className="form-wrapper">
                 <label>Add Resource URL:
                     <input
+                    className="form-control"
                     type="text"
                     id="resource-URL"
                     autoComplete="off"
@@ -104,7 +106,7 @@ function NewResourceForm({ category, onAddResource,setIsUpdating}){
                 </label>
             </div>
 
-            <button> Submit </button>
+            <button className="submit-Btn"> Submit </button>
         </form>
         </div>
        

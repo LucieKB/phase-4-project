@@ -1,4 +1,5 @@
 .post-table {
+    display: block;
     background-color: white;
     width: 1000px;
     border-collapse: collapse;
@@ -14,11 +15,13 @@
   }
 
   th {
+    min-width: fixed;
     border-bottom: 1px solid black;
     border: 2px solid black;
   }
   
   td {
+    max-width: 600px;
     text-align: center;
     border: 2px solid black;
     vertical-align: middle;
@@ -27,16 +30,16 @@
   }
 
   #Update-Btn {
-    border: none;
-    width: 164px;
-    height: 51px;
+    border: black solid 1px;
+    width: 110px;
+    height: 31px;
     margin: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    background: #333;
+    background: #707070;
     font-size: 15px;
     color: #fff;
     vertical-align: middle;

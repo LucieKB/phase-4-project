@@ -24,6 +24,8 @@ console.log(categories)
         setCategories(updatedCategories); 
     } 
 
+
+
    const categoriesLinks = categories.map(category => <CategoryLink key={category.id} user={user} category={category} handleDeleteCategory = {handleDeleteCategory}/>)
    
     

@@ -78,35 +78,36 @@ function CategoryCard({categories, setCategories}){
     return(
         <div>
         <div className="wrapper">
-        <header><h1>{category.name}</h1></header>
-        <hr></hr>
-        <div className = "resources">
-        <h2> 💻 <u> Resources</u> 💻 </h2>
-            {resourcesToDisplay}
-        <br />
-            <button className="Update-Btn" onClick={() => setIsUpdating(isUpdating => (!isUpdating))}> Add Resource </button>
-                                {isUpdating?
-                                <NewResourceForm category={category} onAddResource={handleAddResource} setIsUpdating={setIsUpdating}/> :
-                                null} 
-        </div>
-        <hr></hr>
-            <div className = "posts">
-                {content}
-                <hr />
-                <h3> Take part in the discussion about {category.name}, share your experience, some tips ...</h3>
-            <button className="Update-Btn" onClick={()=> setShowAddPostForm(!showAddPostForm)}>{showAddPostForm? ("Hide Form"):("Add New Post")}</button>
+            <header><h1>{category.name}</h1></header>
+            
+            <div className = "resources">
+            <h2> 💻 <u> Resources</u> 💻 </h2>
+                {resourcesToDisplay}
+            <br />
+                <button className="Update-Btn" onClick={() => setIsUpdating(isUpdating => (!isUpdating))}>{isUpdating? ("Hide Form"):("Add Resource") }</button>
+                                    {isUpdating?
+                                    <NewResourceForm category={category} onAddResource={handleAddResource} setIsUpdating={setIsUpdating}/> :
+                                    null} 
             </div>
-        
-        </div>
+            <hr></hr>
             
+                <div className = "posts">
+                    <h2><u> Posts </u></h2>
+                    {content}
+
+                    <hr />
+                    <h3> Take part in the discussion about {category.name}, share your experience, some tips ...</h3>
+                <br />
+                <button className="Update-Btn" onClick={()=> setShowAddPostForm(!showAddPostForm)}>{showAddPostForm? ("Hide Form"):("Add New Post")}</button>
+                {showAddPostForm ? (
+                <NewPostForm handleAddPost={handleAddPost} category={category}/>
+                ):(
+                null
+                )}
+                </div>
             
-            <div>
-            {showAddPostForm ? (
-            <NewPostForm handleAddPost={handleAddPost} category={category}/>
-            ):(
-             null
-             )}
-             </div>
+            </div>
+           
         
         </div>
     )
