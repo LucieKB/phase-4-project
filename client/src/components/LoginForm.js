@@ -33,48 +33,51 @@ function LoginForm(){
 
     return (
         <>
-    <div className="wrapper">
-        <div className="inner">
-            <div className="img-holder">
-                <img id="teacher-quote" src="https://m.media-amazon.com/images/I/71JTYG-IMBL._AC_UF1000,1000_QL80_.jpg" alt/>
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-wrapper">
-                    <label>
-                        Username: 
-                        <input 
-                            className="form-control"
-                            htmlFor="username"
-                            type="text" 
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}/>
-                    </label>
+        <div className="wrapper">
+            <div className="inner">
+
+                <div className="img-holder">
+                    <img id="teacher-quote" src="https://m.media-amazon.com/images/I/71JTYG-IMBL._AC_UF1000,1000_QL80_.jpg" alt/>
                 </div>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-wrapper">
+                        <label>
+                            Username: 
+                            <input 
+                                className="form-control"
+                                htmlFor="username"
+                                type="text" 
+                                id="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}/>
+                        </label>
+                    </div>
+                        
+                    <div className="form-wrapper">
+                        <label>
+                            Password: 
+                            <input 
+                                className="form-control"
+                                htmlFor="password"
+                                type="password" 
+                                id="password"
+                                autoComplete="current-password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}/>
+                        </label>
+                    </div>
                     
-                <div className="form-wrapper">
-                    <label>
-                        Password: 
-                        <input 
-                            className="form-control"
-                            htmlFor="password"
-                            type="password" 
-                            id="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}/>
-                    </label>
-                </div>
-                    <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-                    <label>
-                        {errors.map((err) => (
-                            <p key={err}>{err}</p> 
-                        ))}
-                    </label>
-            </form>
+                        <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+                        <label>
+                            {errors.map((err) => (
+                                <p key={err}>{err}</p> 
+                            ))}
+                        </label>
+                </form>
+            </div>
         </div>
-    </div>
-    </>
+        </>
     )
 }
 

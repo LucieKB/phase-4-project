@@ -1,15 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./CategoryLink.css"
 
 
 function CategoryLink({user, category, handleDeleteCategory}){
-    // const [isUpdating, setIsUpdating]=useState(false)
     const navigate = useNavigate();
-
-    // const background = category.image
-
 
     if (!category){
       return <div>
@@ -17,7 +13,6 @@ function CategoryLink({user, category, handleDeleteCategory}){
       </div>
      }
     
-
     const handleDeleteCat = () => {
         fetch (`/categories/${category.id}`, {
            method: "DELETE",
@@ -25,8 +20,8 @@ function CategoryLink({user, category, handleDeleteCategory}){
         .then ((r)=> {
         console.log(r)
         if (r.ok){
-          handleDeleteCategory(category);
-        navigate ('/categories')}
+            handleDeleteCategory(category);
+            navigate ('/categories')}
         else {
           console.log ("error with deleting")
         }
@@ -38,26 +33,30 @@ function CategoryLink({user, category, handleDeleteCategory}){
 
     return(
       
-                <div className="front" style = {{backgroundImage : `url(${category.image})`,
-                backgroundSize : "contain", backgroundBlendMode: "lighten", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} > 
+        <div className="front" style = {{backgroundImage: `url(${category.image})`,backgroundSize : "contain", backgroundBlendMode: "lighten", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} > 
                 <br /> 
-                <div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}><h3>{category.name}</h3></div>
-                    {user.username === "LucieKB"? 
-                        (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
-                    }  
-                    <div  id="back">
-                    <Link to={`/categories/${category.id}`}><div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}><h3>{category.name}</h3></div></Link>
+                <div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}>
+                    <h3>{category.name}</h3>
+                </div>
+
+                {user.username === "LucieKB"? 
+                    (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
+                } 
+
+                <div  id="back">
+                    <Link to={`/categories/${category.id}`}>
+                        <div id="cat-name" style = {{fontVariant: "small-caps", fontSize: "16px"}}>
+                            <h3>{category.name}</h3>
+                        </div>
+                    </Link>
+
                     <p id="description">{category.description}</p>
                     {user.username === "LucieKB"? 
                         (<button className="Btn-Delete" onClick={handleDeleteCat}> Delete Category</button>) : ("")
                     }  
-                     
-                 </div>
                 </div>
-                
-            )
-        
-
+        </div>
+    )
 }
 
 

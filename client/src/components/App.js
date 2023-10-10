@@ -5,7 +5,6 @@ import NavBar from './NavBar'
 import Home from './Home'
 import CategoriesList from "../pages/CategoriesList";
 import CategoryCard from "../pages/CategoryCard";
-// import NewResourceForm from "./NewResourceForm";
 import NewCategoryForm from "./NewCategoryForm";
 import { UserContext } from "../contexts/UserContext";
 import UserPosts from "../pages/UserPosts";
@@ -23,13 +22,10 @@ function App() {
     .then(categories => setCategories(categories))
   }, [])
 
-
- 
+  console.log(categories)
 
 if (!user) return <Login />
-
-
-   
+  
   return (
     <>
     <NavBar user={user} setUser={setUser}/>

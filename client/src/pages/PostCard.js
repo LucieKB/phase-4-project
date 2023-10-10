@@ -6,7 +6,6 @@ function PostCard({post, onDeletePost, onUpdatePost}){
  const [isUpdating, setIsUpdating] = useState(false)  
 
     const handleDeletePost = () => {
-        console.log(post.id)
         fetch(`/posts/${post.id}`, {
             method: "DELETE"
         })
@@ -18,30 +17,27 @@ function PostCard({post, onDeletePost, onUpdatePost}){
         })
     }
 
-
     const catName = post.category.name
     const catBackground = post.category.image
-    console.log(catBackground)
    
-
     return(
-    <>
+        <>
         <tr key={post.id}>
+            <td style={{backgroundImage:`url(${catBackground})`, backgroundSize: "cover"}}>
+                <h3 style= {{backgroundColor:"white", color:"black", border: "2px solid black"}}>{catName}</h3>
+            </td>
 
-            <td 
-            style={{backgroundImage:`url(${catBackground})`, backgroundSize: "cover"}}>
-                <h3 style= {{backgroundColor:"white", color:"black", border: "2px solid black"}}>{catName}</h3></td>
             <td>
-
                 <li><u>{post.title}</u> "{post.content}" <em>Posted on: {post.date.split('T')[0]}</em></li>
-            
-             <button id="Update-Btn" onClick={()=> setIsUpdating(isUpdating => (!isUpdating))}>{isUpdating?("Hide Form"):("Update")}</button>
-             {isUpdating?
-        <UpdatePostForm post = {post} setIsUpdating={setIsUpdating} onUpdatePost={onUpdatePost} /> : null
-    }</td>
-            <td><button id="Post-Delete-Btn" onClick={handleDeletePost}>Delete</button></td>
+                <button id="Update-Btn" onClick={()=> setIsUpdating(isUpdating => (!isUpdating))}>{isUpdating?("Hide Form"):("Update")}</button>
+                {isUpdating? <UpdatePostForm post = {post} setIsUpdating={setIsUpdating} onUpdatePost={onUpdatePost} /> : null}
+            </td>
+
+            <td>
+                <button id="Post-Delete-Btn" onClick={handleDeletePost}>Delete</button>
+            </td>
         </tr>
-    </>
+        </>
     )
 }
 

@@ -11,8 +11,8 @@ function Login(){
         <div className="header">
             <div className="fixed"><h2>The Teacher Wellness App :</h2></div>
             <ul className="typed">
-            <li><span>A Community to Help YOU</span></li>
-            <li><span>Feel Good Doing Your Job.</span></li>  
+                <li><span>A Community to Help YOU</span></li>
+                <li><span>Feel Good Doing Your Job.</span></li>  
             </ul>
         </div>
         < br />  

@@ -9,14 +9,14 @@ class User < ApplicationRecord
     validates :state, presence:true
     validates :years_experience, numericality:{less_than_or_equal_to: 60}
 
-    # PASSWORD_REQUIREMENTS = /\A 
-    # (?=.{6,10}) 
-    # (?=.*\d)
-    # (?=.*[A-Z])
-    # (?=.*[[:^alnum:]])
-    # /x
+    PASSWORD_REQUIREMENTS = /\A 
+    (?=.{6,10}) 
+    (?=.*\d)
+    (?=.*[A-Z])
+    (?=.*[[:^alnum:]])
+    /x
 
-    # validates :password, format: PASSWORD_REQUIREMENTS
+    validates :password, format: PASSWORD_REQUIREMENTS
 
     def user_categories
         categories_used = self.categories.map{|c| {c.name => c.id}}

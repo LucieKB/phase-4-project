@@ -8,12 +8,8 @@ function NewPostForm({handleAddPost, category}){
     const [newTitle, setNewTitle] = useState("");
     const [newContent, setNewContent] = useState("");
     const [date, setDate] = useState(new Date());
-    // const [userPosts, setUserPosts] = useState(user.posts);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate()
-
-    console.log(user)
-    console.log(user.id)
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -22,61 +18,58 @@ function NewPostForm({handleAddPost, category}){
             content: newContent,
             date: date,
         };
-    console.log(category)
         fetch(`/categories/${category.id}/posts`, {
             method: "POST",
             headers: {
                 "Content-Type":"application/json",
             },
             body: JSON.stringify(formData),    
-        }).then((r) => {
-            if (r.ok) {
-                r.json().then((catWithNewPost) => {
-                    handleAddPost(catWithNewPost);
-                    // setUserPosts({...user, posts: [...posts, catWithNewPost]})    
-                });
-            setNewTitle("");
-            setNewContent("")
-            navigate(`/categories/${category.id}`)
-            } else {
-                r.json().then((err)=>setErrors(err.errors))
-            }
-        });
-        
+            }).then((r) => {
+                if (r.ok) {
+                    r.json().then((catWithNewPost) => {
+                        handleAddPost(catWithNewPost);  
+                    });
+
+                    setNewTitle("");
+                    setNewContent("")
+                    navigate(`/categories/${category.id}`)
+
+                } else {
+                    r.json().then((err)=>setErrors(err.errors))
+                }
+             });    
     }
 
     return(
         <div  className="form-wrapper">
-        <form onSubmit={handleSubmit}>
-            <h3><em>{user.username}'s new post </em></h3>
-            <div>
-                <label>Post title:</label>
-                <input
-                className="form-control"
-                type="text"
-                id="post"
-                placeholder="Title"
-                autoComplete="off"
-                value={newTitle}
-                onChange={(e) => setNewTitle(e.target.value)}/>
-            
-                <label>Post content:</label>
-                <input
-                className="form-control"
-                type="text"
-                id="post-content"
-                autoComplete="off"
-                value={newContent}
-                onChange={(e) => setNewContent(e.target.value)}/>
-            </div>
-                {errors?.map((err) => (
-            <p key={err} >
-                {err}
-            </p>
-            ))}
-            <button className="submit-Btn">Submit</button>
-        </form>
-    </div>
+            <form onSubmit={handleSubmit}>
+                <h3><em>{user.username}'s new post </em></h3>
+                <div>
+                    <label>Post title:</label>
+                    <input
+                    className="form-control"
+                    type="text"
+                    id="post"
+                    placeholder="Title"
+                    autoComplete="off"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}/>
+                
+                    <label>Post content:</label>
+                    <input
+                    className="form-control"
+                    type="text"
+                    id="post-content"
+                    autoComplete="off"
+                    value={newContent}
+                    onChange={(e) => setNewContent(e.target.value)}/>
+                </div>
+                    {errors?.map((err) => (
+                        <p key={err}>{err}</p>
+                    ))}
+                <button className="submit-Btn">Submit</button>
+            </form>
+        </div>
     )
 
 }

@@ -54,7 +54,7 @@ function Home({user}){
                         </aside>
                     </div>
                 </div>
-                    <hr />
+                <hr />
                
             </div>
         </div>

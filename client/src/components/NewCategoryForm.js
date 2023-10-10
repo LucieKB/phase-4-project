@@ -25,8 +25,8 @@ const [newCatForm, setNewCatForm] = useState({
     const handleSubmit = (e) => {
         e.preventDefault()
         setNewCatForm({...newCatForm})
-        console.log(newCatForm)
         setIsLoading(true);
+
         fetch ("/categories",{
             method:"POST",
             headers:{
@@ -53,57 +53,54 @@ const [newCatForm, setNewCatForm] = useState({
             description: (""),
             image: ("")
         });
-
         navigate("/categories");
     }
 
     return(
         <form onSubmit={handleSubmit}>
-        <div>
-            <label>Name of the Category:
-            <input
-              type="text"
-              id="name"
-              autoComplete="off"
-              placeholder="New Category Name ..."
-              value={newCatForm.name}
-              onChange={(e) => setNewCatForm({...newCatForm, name:e.target.value})}
-            />
-            </label>  
+            <div>
+                <label>Name of the Category:
+                    <input
+                    type="text"
+                    id="name"
+                    autoComplete="off"
+                    placeholder="New Category Name ..."
+                    value={newCatForm.name}
+                    onChange={(e) => setNewCatForm({...newCatForm, name:e.target.value})}
+                    />
+                </label>  
 
-            <label>Description of the Category:
-            <input
-              type="text"
-              id="description"
-              autoComplete="off"
-              placeholder="Description must be less than 30 words ..."
-              value={newCatForm.description}
-              onChange={(e) => setNewCatForm({...newCatForm, description:e.target.value})}
-            />
-            </label>  
+                <label>Description of the Category:
+                    <input
+                    type="text"
+                    id="description"
+                    autoComplete="off"
+                    placeholder="Description must be less than 30 words ..."
+                    value={newCatForm.description}
+                    onChange={(e) => setNewCatForm({...newCatForm, description:e.target.value})}
+                    />
+                </label>  
 
-            <label>Background Image for this Category:
-            <input
-              type="text"
-              id="image"
-              autoComplete="off"
-              placeholder="Copy the URL of the image you chose ..."
-              value={newCatForm.image}
-              onChange={(e) => setNewCatForm({...newCatForm, image:e.target.value})}
-            />
-            </label>            
+                <label>Background Image for this Category:
+                    <input
+                    type="text"
+                    id="image"
+                    autoComplete="off"
+                    placeholder="Copy the URL of the image you chose ..."
+                    value={newCatForm.image}
+                    onChange={(e) => setNewCatForm({...newCatForm, image:e.target.value})}
+                    />
+                </label>            
+            </div>
 
-        </div>
-        <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-            <label>
+            <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
                 
-            </label>
             {errors.length > 0 && (
                 <ul style={{ color: "red" }}>
                     {errors.map((error) => (
                      <li key={error}>{error}</li>
                      ))}
-                 </ul>
+                </ul>
             )}
         </form>
     )
